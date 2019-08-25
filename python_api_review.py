@@ -12,7 +12,7 @@ if initial_get_request.status_code == 200:
     get_request_content = json.loads(initial_get_request.content)
     for key in get_request_content.keys():
         object_keys.append(key)
-    print(f"Request Successful:{object_keys}")
+    print(f"Request Successful")
 else:
     print("Request Failed")
 
@@ -30,6 +30,10 @@ def get_random_tour_content(ids):
             art_objects_list.append(json.loads(response.content))
             
     return art_objects_list
+
+def get_tour_content_titles_and_artists(objects_list):
+    for obj in objects_list:
+        print(f"{obj['title']} - {obj['artistDisplayName']}")
         
-print(get_random_tour_content(get_random_tour_ids(get_request_content, object_ids)))
+print(get_tour_content_titles_and_artists(get_random_tour_content(get_random_tour_ids(get_request_content, object_ids))))
     
